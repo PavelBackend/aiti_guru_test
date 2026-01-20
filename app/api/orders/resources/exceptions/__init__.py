@@ -1,8 +1,7 @@
-from .order import NotEnoughStock, OrderNotFound, ProductNotFound
+from .order import OrderNotFound, ProductNotFound, NotEnoughStock
 
 __all__ = [
     "OrderNotFound",
     "ProductNotFound",
     "NotEnoughStock",
-    "AppHTTPException",
 ]

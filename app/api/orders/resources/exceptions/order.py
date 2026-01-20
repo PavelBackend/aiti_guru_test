@@ -1,4 +1,4 @@
-from .base import AppHTTPException
+from app.schemas.base import AppHTTPException
 
 
 class OrderNotFound(AppHTTPException):

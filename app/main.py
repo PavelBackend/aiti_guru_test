@@ -1,18 +1,12 @@
-from asgi_correlation_id import CorrelationIdMiddleware
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.exceptions import RequestValidationError
-from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.middleware.cors import CORSMiddleware
-
 from app.api.orders.router import router as orders_router
 from app.schemas.base import AppHTTPException
-from app.utils.handlers import (
-    app_error_handler,
-    error_exception_handler,
-    request_middleware,
-    validation_exception_handler,
-)
+from app.utils.handlers import app_error_handler, error_exception_handler, request_middleware, validation_exception_handler
 from app.utils.logging import configure_logging, log_json
+from asgi_correlation_id import CorrelationIdMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="Aiti Guru Test",

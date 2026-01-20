@@ -1,7 +1,12 @@
 from typing import Any, Optional
-
-from fastapi import HTTPException
 from pydantic import BaseModel, Field
+from fastapi import HTTPException
+
+
+class BaseError(BaseModel):
+    detail: Any
+    user_message: str
+    type: Optional[str] = Field("BaseError", description="Exception class name")
 
 
 class AppHTTPException(HTTPException):
