@@ -1,0 +1,46 @@
+services:
+  app:
+    container_name: aiti_guru
+    build: .
+    command: >
+      sh -c "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app
+    networks:
+      - aiti_guru_backend
+
+  db:
+    image: postgres:16
+    container_name: aiti_guru_db
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${DB_DB}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - aiti_guru_db_data:/var/lib/postgresql/data
+    networks:
+      - aiti_guru_backend
+
+volumes:
+  aiti_guru_db_data:
+
+networks:
+  aiti_guru_backend:
+    driver: bridge
