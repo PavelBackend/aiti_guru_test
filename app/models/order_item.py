@@ -1,6 +1,8 @@
-from sqlalchemy import ForeignKey, UniqueConstraint, Numeric, CheckConstraint
+from sqlalchemy import CheckConstraint, ForeignKey, Numeric, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from app.db.base import Base
+
 
 class OrderItem(Base):
     __tablename__ = "order_items"

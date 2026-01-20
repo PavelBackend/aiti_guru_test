@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-# from st_bases.tools.openapi import simplify_operation_ids
 
 from app.api.orders.router import router as orders_router
+from app.utils.openapi import simplify_operation_ids
 
 main_router = APIRouter()
 

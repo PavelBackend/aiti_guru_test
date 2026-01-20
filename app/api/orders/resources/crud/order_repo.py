@@ -1,7 +1,11 @@
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.orders.resources.exceptions import ProductNotFound, NotEnoughStock, OrderNotFound
+from app.api.orders.resources.exceptions import (
+    NotEnoughStock,
+    OrderNotFound,
+    ProductNotFound,
+)
 
 
 class OrderRepo:

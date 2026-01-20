@@ -1,5 +1,7 @@
-from typing import Any
+from typing import Any, Optional
+
 from fastapi import HTTPException
+from pydantic import BaseModel, Field
 
 
 class AppHTTPException(HTTPException):

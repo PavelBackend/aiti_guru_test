@@ -1,6 +1,8 @@
-from sqlalchemy import ForeignKey, Numeric, String, CheckConstraint
+from sqlalchemy import CheckConstraint, ForeignKey, Numeric, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from app.db.base import Base
+
 
 class Product(Base):
     __tablename__ = "products"

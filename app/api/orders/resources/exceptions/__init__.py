@@ -1,5 +1,4 @@
-from .base import AppHTTPException
-from .order import OrderNotFound, ProductNotFound, NotEnoughStock
+from .order import NotEnoughStock, OrderNotFound, ProductNotFound
 
 __all__ = [
     "OrderNotFound",
