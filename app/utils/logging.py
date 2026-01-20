@@ -1,8 +1,10 @@
 import os
 import sys
 from copy import deepcopy
+
 from fastapi import Request
 from loguru import logger
+
 from config import settings
 
 
@@ -40,9 +42,7 @@ def configure_logging(app):
     )
 
     if settings.LOGGER_STDOUT:
-        sinks.append(
-            logger.add(sys.stdout, colorize=True, level=logging_level, format=fmt)
-        )
+        sinks.append(logger.add(sys.stdout, colorize=True, level=logging_level, format=fmt))
 
     if settings.LOGGER_SERIALIZE:
         sinks.append(
@@ -58,6 +58,7 @@ def configure_logging(app):
     logger.configure(extra={"request_ip": "INTERNAL", "request_id": "INTERNAL"})
 
     app.state.log_sinks = sinks
+
 
 import os
 import sys

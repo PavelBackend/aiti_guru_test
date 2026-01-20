@@ -1,6 +1,7 @@
 from typing import Any, Optional
-from pydantic import BaseModel, Field
+
 from fastapi import HTTPException
+from pydantic import BaseModel, Field
 
 
 class BaseError(BaseModel):
