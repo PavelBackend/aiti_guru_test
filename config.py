@@ -5,7 +5,8 @@ from pydantic_settings import BaseSettings
 BASE_DIR = Path(__file__).resolve()
 
 class Settings(BaseSettings):
-    MODE: Literal['TEST', "DEV", "PROD"] = "DEV"
+    MODE: Literal['TEST', "LOCAL", "DEV", "PROD"] = "LOCAL"
+    NUM_WORKERS: int
     
     DB_PASSWORD: str
     DB_USER: str
@@ -18,6 +19,9 @@ class Settings(BaseSettings):
 
     LOGGER_STDOUT: bool
     LOGGER_SERIALIZE: bool
+    LOG_ENQUEUE: bool
+    LOG_ROTATION: bool
+    ADD_VALIDATION_ERRORS_TO_RESPONSES: bool
     
     @property
     def db_url_async(self) -> str:
