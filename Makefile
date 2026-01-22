@@ -1,7 +1,7 @@
 DC = docker compose
 EXEC = docker exec -it
 LOGS = docker logs
-ENV = --env-file .env
+ENV = --env-file .env.sample
 APP_FILE = ./docker-compose.yml
 APP_CONTAINER = aiti_guru
 

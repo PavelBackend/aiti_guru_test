@@ -38,4 +38,4 @@ class OrderRouter:
     async def add_item_to_order(self, order_id: int, order_data: AddItemRequest):
         service = OrderService(self.session)
 
-        await service.add_item_to_order(order_id=order_id, order_data=order_data)
+        return await service.add_item_to_order(order_id=order_id, order_data=order_data)

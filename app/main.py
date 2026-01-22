@@ -21,7 +21,7 @@ app = FastAPI(
     dependencies=[Depends(log_json)],
 )
 
-app.add_event_handler("startup", lambda: configure_logging(app))
+# app.add_event_handler("startup", lambda: configure_logging(app))
 app.add_exception_handler(Exception, handler=error_exception_handler)
 app.add_exception_handler(RequestValidationError, handler=validation_exception_handler)
 app.add_exception_handler(AppHTTPException, handler=app_error_handler)

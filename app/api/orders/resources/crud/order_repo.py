@@ -17,7 +17,6 @@ class OrderRepo:
         Добавляет товар в заказ.
         Если позиция уже есть — увеличивает qty.
         Если товара не хватает — кидает NotEnoughStock.
-        Возвращает итоговое количество товара в заказе (new_qty).
         """
         order_exists = await self.session.execute(
             text("SELECT 1 FROM orders WHERE id = :order_id"),
@@ -44,14 +43,13 @@ class OrderRepo:
         if int(prod["stock_qty"]) < qty:
             raise NotEnoughStock
 
-        upsert_res = await self.session.execute(
+        await self.session.execute(
             text(
                 """
                 INSERT INTO order_items (order_id, product_id, qty, unit_price_at_order)
                 VALUES (:order_id, :product_id, :qty, :price)
                 ON CONFLICT (order_id, product_id)
                 DO UPDATE SET qty = order_items.qty + EXCLUDED.qty
-                RETURNING qty
                 """
             ),
             {
@@ -61,7 +59,6 @@ class OrderRepo:
                 "price": prod["price"],
             },
         )
-        new_qty = upsert_res.scalar_one()
 
         await self.session.execute(
             text(
@@ -73,5 +70,3 @@ class OrderRepo:
             ),
             {"qty": qty, "product_id": product_id},
         )
-
-        return int(new_qty)
