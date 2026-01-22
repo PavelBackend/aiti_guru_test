@@ -34,7 +34,7 @@ class Settings(BaseSettings):
         return f"postgresql+psycopg://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_DB}"
 
     class Config:
-        env_file = BASE_DIR / ".env"
+        env_file = BASE_DIR / ".env.sample"
 
 
 settings = Settings()
