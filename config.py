@@ -3,7 +3,7 @@ from typing import Literal
 
 from pydantic_settings import BaseSettings
 
-BASE_DIR = Path(__file__).resolve()
+BASE_DIR = Path(__file__).resolve().parent
 
 
 class Settings(BaseSettings):
